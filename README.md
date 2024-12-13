@@ -18,17 +18,17 @@ http://_<base_url>_/_<end_point>_
 
 ### Examples:
 
-GET http://localhost/php-mysql-employees-rest-api/
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=last_name
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=first_name
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=dept_name
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=gender
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=birth_date
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=hire_date
-GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=salary
-GET http://localhost/php-mysql-employees-rest-api/employees?name=JoAnne
-GET http://localhost/php-mysql-employees-rest-api/departments?sort=name
-GET http://localhost/php-mysql-employees-rest-api/departments?sort=manager
+- GET http://localhost/php-mysql-employees-rest-api/
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=last_name
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=first_name
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=dept_name
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=gender
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=birth_date
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=hire_date
+- GET http://localhost/php-mysql-employees-rest-api/employees?range=13&sort=salary
+- GET http://localhost/php-mysql-employees-rest-api/employees?name=JoAnne
+- GET http://localhost/php-mysql-employees-rest-api/departments?sort=name
+- GET http://localhost/php-mysql-employees-rest-api/departments?sort=manager
 
 ### Sample Output:
 
