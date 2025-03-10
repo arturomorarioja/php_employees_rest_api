@@ -2,7 +2,6 @@
 
 Class Utils
 {
-
     /**
      * Returns the REST API description
      */
@@ -22,7 +21,7 @@ Class Utils
      */
     public static function addHATEOAS(array|string $information = '', string $entity = ''): string 
     {
-        $curDir = urlPath();
+        $curDir = self::urlPath();
 
         if ($entity) {
             $apiInfo[$entity] = $information;
@@ -49,4 +48,14 @@ Class Utils
         $output['message'] = 'Incorrect format';
         return self::addHATEOAS($output, '_error');
     }    
+
+    /**
+     * Returns the API's URL path
+     */
+    private static function urlPath(): string 
+    {
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') 
+            || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
+        return $protocol . $_SERVER['HTTP_HOST'] . '/' . basename(__DIR__) . '/';     
+    }
 }

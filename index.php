@@ -111,13 +111,3 @@ if ($pieces > 2) {              // The route is more than one level deep
             echo Utils::formatError();
     }
 }
-
-/**
- * Returns the API's URL path
- */
-function urlPath(): string 
-{
-    $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') 
-        || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
-    return $protocol . $_SERVER['HTTP_HOST'] . '/' . basename(__DIR__) . '/';     
-}
