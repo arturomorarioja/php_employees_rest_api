@@ -6,9 +6,9 @@
  * @version 1.0 August 2020
  */
 
-require_once 'config.php';
+require_once 'Config.php';
 
-class DB extends Config 
+Class DB extends Config 
 {
     /**
      * Opens a connection to the database

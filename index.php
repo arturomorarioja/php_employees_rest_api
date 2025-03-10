@@ -9,15 +9,18 @@
  *                                The API can now be served from any directory in the server
  * @version 2.0.1 December 2024. Refactoring
  *                               Code convention improved
+ * @version 2.0.2 March 2025. API utilities taken to their own class
  */
 
 define('POS_ENTITY', 1);
 define('ENTITY_EMPLOYEES', 'employees');
 define('ENTITY_DEPARTMENTS', 'departments');
 
+require_once 'classes/Utils.php';
+
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
-    echo formatError();
+    echo Utils::formatError();
     exit;
 }
 
@@ -40,9 +43,9 @@ $pieces = count($urlPieces);
 
 if ($pieces > 2) {              // The route is more than one level deep
     http_response_code(400);
-    echo formatError();
+    echo Utils::formatError();
 } else if ($pieces == 1) {      // No entity is being passed to the route
-    echo APIDescription();
+    echo Utils::APIDescription();
 } else {    
     switch ($urlPieces[POS_ENTITY]) {
         case ENTITY_EMPLOYEES:
@@ -76,7 +79,7 @@ if ($pieces > 2) {              // The route is more than one level deep
             if (isset($result['error'])) {
                 http_response_code(500);
             }
-            echo addHATEOAS($result, ENTITY_EMPLOYEES);
+            echo Utils::addHATEOAS($result, ENTITY_EMPLOYEES);
             $employee = null;
 
             break;
@@ -100,65 +103,21 @@ if ($pieces > 2) {              // The route is more than one level deep
             if (isset($result['error'])) {
                 http_response_code(500);
             }
-            echo addHATEOAS($result, ENTITY_DEPARTMENTS);
+            echo Utils::addHATEOAS($result, ENTITY_DEPARTMENTS);
 
             break;
         default:
             http_response_code(400);
-            echo formatError();
+            echo Utils::formatError();
     }
 }
 
 /**
  * Returns the API's URL path
  */
-function urlPath(): string {
+function urlPath(): string 
+{
     $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') 
         || $_SERVER['SERVER_PORT'] == 443) ? 'https://' : 'http://';
     return $protocol . $_SERVER['HTTP_HOST'] . '/' . basename(__DIR__) . '/';     
-}
-
-/**
- * Returns the REST API description
- */
-function APIDescription(): string {
-    return addHATEOAS();
-}
-
-/**
- * Adds HATEOAS links to the data it receives as a parameter
- * 
- * @param   $information    Entity information to add the HATEOAS links to
- * @param   $entity         Name of the entity the HATEOAS links will be added to.
- *                          If false, only the HATEOAS links will be returned
- * @return  The information to be served by the API including its 
- *          corresponding HATEOAS links encoded as JSON
- */
-function addHATEOAS(array|string $information = null, string $entity = null): string {
-    $curDir = urlPath();
-
-    if (!is_null($entity)) {
-        $apiInfo[$entity] = $information;
-    }
-    $apiInfo['_links'] = array(
-        array(
-            'rel' => ($entity == ENTITY_EMPLOYEES ? 'self' : ENTITY_EMPLOYEES),
-            'href' => $curDir . ENTITY_EMPLOYEES . '{?name=&range=&sort=}',
-            'type' => 'GET'
-        ),
-        array(
-            'rel' => ($entity == ENTITY_DEPARTMENTS ? 'self' : ENTITY_DEPARTMENTS),
-            'href' => $curDir . ENTITY_DEPARTMENTS . '{?sort=}',
-            'type' => 'GET'
-        )
-    );        
-    return json_encode($apiInfo);
-}
-
-/**
- * Returns a format error
- */
-function formatError(): string {
-    $output['message'] = 'Incorrect format';
-    return addHATEOAS($output, '_error');
 }

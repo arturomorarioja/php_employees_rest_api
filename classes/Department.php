@@ -5,9 +5,9 @@
  * @author Arturo Mora-Rioja
  * @version 1.0 August 2020:
  */
-require_once 'connection.php';
+require_once 'Connection.php';
 
-class Department 
+Class Department 
 {
     const ERROR_CONN = 'There was an error while trying to connect to the database';
     const ERROR_QUERY = 'There was an error while executing a query: ';
@@ -15,8 +15,8 @@ class Department
     /**
      * Retrieves information of departments
      * 
-     * @param   field by which to sort the retrieved information. None if an empty string
-     * @return  an array with department information or an error message if there was an error
+     * @param  field by which to sort the retrieved information. None if an empty string
+     * @return array an array with department information or an error message if there was an error
      */
     public function list(string $sort = ''): array
     {

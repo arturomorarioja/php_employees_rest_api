@@ -5,11 +5,11 @@
  * @author Arturo Mora-Rioja
  * @version 1.0 August 2020
  */
-require_once 'connection.php';
+require_once 'Connection.php';
 
 define('NUM_ROWS', 25);
 
-class Employee 
+Class Employee 
 {
     const ERROR_CONN = 'There was an error while trying to connect to the database';
     const ERROR_QUERY = 'There was an error while executing a query: ';
@@ -17,11 +17,11 @@ class Employee
     /**
      * Retrieves information of employees
      * 
-     * @param   the range number of rows to return, in groups of 25
-     * @param   field by which to sort the retrieved information. None if an empty string
-     * @return  an array with employee information or an error message if there was an error
+     * @param  the range number of rows to return, in groups of 25
+     * @param  field by which to sort the retrieved information. None if an empty string
+     * @return array an array with employee information or an error message if there was an error
      */
-    function list(int $range, string $sort = ''): array
+    public function list(int $range, string $sort = ''): array
     {
         $db = new DB();
         $con = $db->connect();
@@ -86,12 +86,12 @@ class Employee
     /**
      * Retrieves the employees whose first or last name includes a certain text
      * 
-     * @param   text upon which to execute the search
-     * @param   the range number of rows to return, in groups of 25
-     * @param   field by which to sort the retrieved information. None if an empty string
-     * @return  an array with employee information or an error message if there was an error
+     * @param  text upon which to execute the search
+     * @param  the range number of rows to return, in groups of 25
+     * @param  field by which to sort the retrieved information. None if an empty string
+     * @return array an array with employee information or an error message if there was an error
      */
-    function search(string $searchText, int $range, string $sort = ''): array
+    public function search(string $searchText, int $range, string $sort = ''): array
     {
         $db = new DB();
         $con = $db->connect();
