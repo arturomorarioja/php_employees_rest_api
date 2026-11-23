@@ -37,7 +37,7 @@ $url = substr($url, strpos($url, basename(__DIR__)));
 $urlPieces = explode('/', urldecode($url));
 
 header('Content-Type: application/json');
-header('Accept-version: v1');
+header('Accept-version: v2');
 http_response_code(200);
 
 $pieces = count($urlPieces);
