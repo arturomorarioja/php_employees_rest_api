@@ -49,7 +49,7 @@ if ($pieces > 2) {              // The route is more than one level deep
 } else {    
     switch ($urlPieces[POS_ENTITY]) {
         case ENTITY_EMPLOYEES:
-            require_once 'src/employee.php';
+            require_once 'classes/employee.php';
 
             $employee = new Employee();
 
@@ -84,7 +84,7 @@ if ($pieces > 2) {              // The route is more than one level deep
 
             break;
         case ENTITY_DEPARTMENTS:
-            require_once('src/department.php');
+            require_once 'classes/department.php';
 
             $department = new Department();
 
