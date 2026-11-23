@@ -10,6 +10,7 @@
  * @version 2.0.1 December 2024. Refactoring
  *                               Code convention improved
  * @version 2.0.2 March 2025. API utilities taken to their own class
+ * @version 2.0.3 November 2026. Class path issue fixed
  */
 
 define('POS_ENTITY', 1);
